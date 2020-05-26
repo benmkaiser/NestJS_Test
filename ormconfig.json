@@ -1,0 +1,12 @@
+{
+    "address": "0.0.0.0",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "mastery",
+    "database": "ben_practice",
+    "synchronize": true,
+    "logging": true,
+    "entities": ["dist/**/*.entity.js"]
+}

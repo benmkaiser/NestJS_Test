@@ -2,20 +2,31 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Toy {
+  id: ID!
+  description: String!
+  dog: Dog
+}
+
 type Dog {
   id: ID!
   name: String!
   description: String!
+  toys: [Toy!]
 }
 
 type Query {
   getAllDogs: [Dog!]!
   getDog(id: ID!): Dog!
+  getAllToys: [Toy!]!
+  getToy(id: ID!): Toy!
 }
 
 type Mutation {
   updateDog(input: UpdateDogDto!): Dog!
   createDog(input: CreateDogDto!): Dog!
+  updateToy(input: UpdateToyDto!): Toy!
+  createToy(input: CreateToyDto!): Toy!
 }
 
 input UpdateDogDto {
@@ -27,4 +38,15 @@ input UpdateDogDto {
 input CreateDogDto {
   name: String!
   description: String!
+}
+
+input UpdateToyDto {
+  id: ID!
+  description: String!
+  dogId: String!
+}
+
+input CreateToyDto {
+  description: String!
+  dogId: String!
 }

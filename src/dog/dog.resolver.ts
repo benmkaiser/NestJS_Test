@@ -15,14 +15,15 @@ export class DogResolver {
     }
 
     @Query(returns => Dog)
-    async getDog(@Args('id', { type: () => ID }) id: string) {
+    async getDog(
+        @Args('id', { type: () => ID }) id: string) {
         return this.dogService.getDog(id)
     }
 
     @Mutation(returns => Dog)
     async updateDog(
-        @Args('input') input: UpdateDogDto) {
-            return this.dogService.updateDog(input)
+        @Args('input', { type: () => UpdateDogDto }) input: UpdateDogDto) {
+            return this.dogService.updateDog(input.id, input)
     }
 
     @Mutation(returns => Dog)

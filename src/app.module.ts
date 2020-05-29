@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DogModule } from './dog/dog.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
+import { ToyModule } from './toy/toy.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { join } from 'path';
       playground: true,
       debug: true
     }),
-    DogModule
+    DogModule,
+    ToyModule
   ]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Delete, Put, Body, Param } from '@nestjs/common';
 import { DogService } from './dog.service';
-import { DogEntity } from './dog.entity';
+import { UpdateDogDto, CreateDogDto } from './dog';
 
 @Controller('dog')
 export class DogController {
@@ -17,13 +17,13 @@ export class DogController {
     }
 
     @Post()
-    createDog(@Body() data: DogEntity) { 
+    createDog(@Body() data: CreateDogDto) { 
         return this.dogService.createDog(data); 
     }
 
     @Put(':id')
-    updateDog(@Param() id: string, @Body() data: DogEntity) { 
-        return this.dogService.updateDog(data); 
+    updateDog(@Param() id: string, @Body() data: UpdateDogDto) { 
+        return this.dogService.updateDog(id, data); 
     }
 
     @Delete(':id')

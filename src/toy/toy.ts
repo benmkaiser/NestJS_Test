@@ -1,38 +1,35 @@
 import { ObjectType, Field, ID, InputType } from '@nestjs/graphql' 
-import { Toy } from 'src/toy/toy';
+import { Dog } from 'src/dog/dog';
 
 @ObjectType()
-export class Dog {
+export class Toy {
     @Field(type => ID)
     id: string;
 
     @Field(type => String)
-    name: string;
-
-    @Field(type => String)
     description: string;
 
-    @Field(type => [Toy], { nullable: true })
-    toys?: Toy[];
+    @Field(type => Dog, { nullable: true })
+    dog?: Dog;
 }
 
 @InputType()
-export class CreateDogDto {
-    @Field(type => String)
-    name: string;
-
+export class CreateToyDto {
     @Field(type => String)
     description: string;
+
+    @Field(type => String)
+    dogId: string;
 }
 
 @InputType()
-export class UpdateDogDto {
+export class UpdateToyDto {
     @Field(type => ID)
     id: string;
 
     @Field(type => String)
-    name: string;
+    description: string;
 
     @Field(type => String)
-    description: string;
+    dogId: string;
 }

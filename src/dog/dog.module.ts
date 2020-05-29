@@ -4,12 +4,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DogEntity } from './dog.entity';
 import { DogController } from './dog.controller';
 import { DogResolver } from './dog.resolver';
+import { ToyEntity } from 'src/toy/toy.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([DogEntity])],
+    imports: [TypeOrmModule.forFeature([DogEntity, ToyEntity])],
     controllers: [DogController],
     providers: [DogService, DogResolver],
-    exports: [DogService]
+    exports: [TypeOrmModule.forFeature([DogEntity])]
 })
-export class DogModule {}
+export class DogModule { }
 

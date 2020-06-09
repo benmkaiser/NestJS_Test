@@ -2,8 +2,12 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DogModule } from './dog/dog.module';
 import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
 import { ToyModule } from './toy/toy.module';
+import { join } from 'path';
+import { EmailModule } from './email/email.module';
+import { UpdateModule } from './update/update.module';
+
+// todo: use prettierrc --> configure
 
 @Module({
   imports: [
@@ -14,7 +18,9 @@ import { ToyModule } from './toy/toy.module';
       debug: true
     }),
     DogModule,
-    ToyModule
+    ToyModule,
+    EmailModule,
+    UpdateModule
   ]
 })
 export class AppModule {}

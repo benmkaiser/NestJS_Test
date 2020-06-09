@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { ToyEntity } from './toy.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateToyDto, UpdateToyDto } from './toy';
-import { DogEntity } from 'src/dog/dog.entity';
+import { DogEntity } from '../dog/dog.entity';
 
 @Injectable()
 export class ToyService {
@@ -11,7 +11,7 @@ export class ToyService {
         @InjectRepository(ToyEntity) 
         private toyRepository: Repository<ToyEntity>,
         @InjectRepository(DogEntity) 
-        private dogRepository: Repository<DogEntity>
+        private dogRepository: Repository<DogEntity>,
     ) { }
 
     async getAllToys() {
@@ -30,7 +30,7 @@ export class ToyService {
 
     async updateToy(id: string, data: UpdateToyDto) {
         const dog = await this.dogRepository.findOne({ where: { id: data.dogId } });
-        return this.toyRepository.update({ id }, { ...data, dog: dog })
+        return this.toyRepository.update({ id }, { ...data, dog: dog });
     }
 
     async kill(id: string) {

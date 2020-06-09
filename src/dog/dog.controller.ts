@@ -4,11 +4,11 @@ import { UpdateDogDto, CreateDogDto } from './dog';
 
 @Controller('dog')
 export class DogController {
-    constructor(private dogService: DogService) {}
+    constructor(private dogService: DogService) { }
 
     @Get()
     getAllDogs() { 
-        return this.dogService.getAllDogs() 
+        return this.dogService.getAllDogs();
     }
 
     @Get(':id')
@@ -18,7 +18,8 @@ export class DogController {
 
     @Post()
     createDog(@Body() data: CreateDogDto) { 
-        return this.dogService.createDog(data); 
+        const createdDog = this.dogService.createDog(data); 
+        return createdDog;
     }
 
     @Put(':id')

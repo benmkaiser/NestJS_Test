@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, ID, Mutation, ResolveField, Parent } from '@nestjs/graphql';
 import { Toy, UpdateToyDto, CreateToyDto } from './toy';
 import { ToyService } from './toy.service';
-import { DogService } from 'src/dog/dog.service';
+
 
 @Resolver(of => Toy)
 export class ToyResolver {

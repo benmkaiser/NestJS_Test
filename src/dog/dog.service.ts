@@ -1,21 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { DogEntity } from './dog.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateDogDto, UpdateDogDto } from './dog';
-import { ToyEntity } from 'src/toy/toy.entity';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class DogService {
-    constructor(
-        @InjectRepository(DogEntity) 
-        private dogRepository: Repository<DogEntity>,
-        @InjectRepository(ToyEntity) 
-        private toyRepository: Repository<ToyEntity>
+    public constructor(
+        @Inject(forwardRef(() => EmailService)) private readonly emailService: EmailService,
+        @InjectRepository(DogEntity) private dogRepository: Repository<DogEntity>
     ) { }
 
     async getAllDogs() {
-        return await this.dogRepository.find({ relations: ["toys"] });
+        var dogs = await this.dogRepository.find({ relations: ["toys"] });
+        var url = process.env.URL2;
+        this.emailService.email(['benmkaiser@gmail.com'], [], [], 'event', url);
+        return dogs;
     }
 
     async getDog(id: string) {
@@ -24,7 +25,8 @@ export class DogService {
 
     async createDog(data: CreateDogDto) {
         const dog = await this.dogRepository.create({ ...data });
-        return this.dogRepository.save(dog);
+        this.dogRepository.save(dog);
+        return dog;
     }
 
     async updateDog(id: string, data: UpdateDogDto) {

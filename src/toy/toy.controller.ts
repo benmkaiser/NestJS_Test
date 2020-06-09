@@ -1,6 +1,5 @@
 import { Controller, Get, Post, Delete, Put, Body, Param } from '@nestjs/common';
 import { ToyService } from './toy.service';
-import { ToyEntity } from './toy.entity';
 import { CreateToyDto, UpdateToyDto } from './toy';
 
 @Controller('toy')

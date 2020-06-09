@@ -1,5 +1,5 @@
-import { ObjectType, Field, ID, InputType } from '@nestjs/graphql' 
-import { Dog } from 'src/dog/dog';
+import { ObjectType, Field, ID, InputType } from '@nestjs/graphql';
+import { Dog } from '../dog/dog';
 
 @ObjectType()
 export class Toy {

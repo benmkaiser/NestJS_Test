@@ -15,6 +15,24 @@ type Dog {
   toys: [Toy!]
 }
 
+type Email {
+  id: ID!
+  responseId: String!
+  address: String!
+  event: String!
+  sent: String!
+  updates: [Update!]
+}
+
+type Update {
+  id: ID!
+  responseId: String!
+  address: String!
+  event: String!
+  recieved: String!
+  email: Email
+}
+
 type Query {
   getAllDogs: [Dog!]!
   getDog(id: ID!): Dog!
